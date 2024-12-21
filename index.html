@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration Form</title>
+<style>
+  body {
+    background: url('2.jpg') center center/cover no-repeat;
+    font-family: Arial, sans-serif;
+    height: 100vh; 
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    backdrop-filter: blur(8px); /* Glass-like blur effect with reduced blur */
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative; /* Relative positioning for background image */
+    overflow: hidden; /* Hide overflow to keep background image contained */
+  }
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Send background image to the back */
+    filter: blur(3px); /* Optional: Blur the background image slightly */
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .form-group input[type="text"],
+  .form-group input[type="password"],
+  .form-group input[type="number"],
+  .form-group input[type="tel"],
+  .form-group input[type="email"],
+  .form-group textarea {
+    width: calc(100% - 22px); /* Adjusted width to accommodate for padding */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent white border */
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white for form fields */
+  }
+  .form-group input[type="submit"],
+  .form-group input[type="reset"] {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    background-color: rgba(76, 175, 80, 0.8); /* Transparent green background */
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  .form-group input[type="reset"] {
+    background-color: rgba(244, 67, 54, 0.8); /* Transparent red background */
+    margin-left: 10px;
+  }
+  .form-group input[type="submit"]:hover,
+  .form-group input[type="reset"]:hover {
+    background-color: rgba(76, 175, 80, 1); /* Solid green background on hover */
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="background-image"></div>
+  <h2 style="text-align: center; color: #333;">User Registration Form</h2>
+  <form id="registrationForm" action="#" method="post" onsubmit="return validateForm()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <div class="form-group">
+      <label for="retypePassword">Retype Password:</label>
+      <input type="password" id="retypePassword" name="retypePassword" required>
+    </div>
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required>
+    </div>
+    <div class="form-group">
+      <label for="mobile">Mobile Number:</label>
+      <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email Id:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="pincode">Pincode:</label>
+      <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" required>
+    </div>
+    <div class="form-group" style="text-align: center;">
+      <input type="submit" value="Submit">
+      <input type="reset" value="Reset">
+    </div>
+  </form>
+</div>
+
+<script>
+  function validateForm() {
+    var password = document.getElementById("password").value;
+    var retypePassword = document.getElementById("retypePassword").value;
+    var mobile = document.getElementById("mobile").value;
+    var pincode = document.getElementById("pincode").value;
+
+    // Password validation
+    if (password !== retypePassword) {
+      alert("Passwords do not match");
+      return false;
+    }
+
+    // Mobile number validation
+    if (!/^[0-9]{10}$/.test(mobile)) {
+      alert("Mobile number should be 10 digits");
+      return false;
+    }
+
+    // Pincode validation
+    if (!/^[0-9]{6}$/.test(pincode)) {
+      alert("Pincode should be 6 digits");
+      return false;
+    }
+
+    return true;
+  }
+</script>
+
+</body>
+</html>
